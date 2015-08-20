@@ -129,7 +129,17 @@ You should leave {{  (mealCost * tip | currency) * 100 }}</h4>
     <p>Second Number:
         <input type="number" ng-model="num2" ng-init="num2=0" />
     </p>
-    <p>Sum: {{ num1 * num2 }}</p>
+    <p>Sum: {{ num1 + num2 }}</p>
+
+
+  <h3>More math</h3>
+  <p>First Number:
+      <input type="number" ng-model="num1" ng-init="num1=0" />
+  </p>
+  <p>Second Number:
+      <input type="number" ng-model="num2" ng-init="num2=0" />
+  </p>
+  <p>Product: {{ num1 * num2 }}</p>
 
 <hr>
 
