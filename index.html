@@ -2,42 +2,160 @@
 <html ng-app="myapp">
 <head>
     <meta charset="utf-8">
-    <title>Hello, World!</title>
+    <title>Angular1 Expercise</title>
 </head>
 <body>
     <div ng-controller="HelloController">
-      <h2>Hello, {{hello.title}}!</h2>
+      <h2> {{hello.title}}</h2>
   </div>
 
   <hr>
 
-  <input type="text" ng-model="name" ng-init = "name = 'BoJack'" placeholder="What is your name?">
-  <h3>My name is: {{ name }}</h3>
 
+<!-- Create a text input box and give it an intial fill of BoJack. When that's erased, ask the user to enter his name -->
+  <input type="text" ng-model="firstName" ng-init = "firstName = 'BoJack'" placeholder="What is your name?">
+  <h4>My name is: {{ name }}</h4>
   <hr>
 
 
-<h3>Do you like cats or dogs better?</h3>
+
+<!-- Ask the user if he likes cats or dogs better -->
+<h4>Do you like cats or dogs better?</h4>
 <h5>You chose: {{ favorite.Animal }}</h5>
-<select ng-model="favorite.Animal">
-    <option>Make a choice</option>
+  <select ng-init = "name = 'Please answer'" ng-model="favorite.Animal">
+    <option value="">---Please select---</option>
     <option> Dogs</option>
     <option> Cats</option>
     <option> Dogs &amp; Cats</option>
     <option> Neither</option>
-</select>
+  </select>
 
 <hr>
 
 
 
+<!-- Sample code -->
+<p>1 + 2 = {{1 + 2}}</p>
+<p>My name is {{"BoJack" + " Horseman"}}</p>
+<p>The array [99,43,22] is {{ [99,43,22].length }} items long</p>
+
+<hr>
 
 
 
+<!-- An example of currency. The syntax is {{ expression | filter }} -->
+<h4>Currency symbols from different countries.</h4>
+<p>{{3.14159265359 | currency }}</p>
+<p>{{3.14159265359 | currency: "&euro;"}}</p>
+<p>{{3.14159265359 | currency: "&yen;"}}</p>
+<p>{{3.14159265359 | currency: "&pound;"}}</p>
+
+<hr>
 
 
 
+<!-- User entered words are returned in UPPERCASE and lowercase -->
+<h4>Watch while I YELL and whisper back to you</h4>
+<input type="text" ng-model="saySomething" placeholder="Enter text here">
+<h5>Now I'm YELLING: {{ saySomething | uppercase }}</h5>
+<h5>Now I'm whispering: {{ saySomething | lowercase }}</h5>
 
+<hr>
+
+
+
+<!-- Showing various decimal places -->
+<h4>Showing different decimal places</h4>
+<p>{{3.14159265359 | number:3}}</p>
+<p>{{3.14159265359 | number:6}}</p>
+<p>{{3.14159265359 | number:1}}</p>
+
+<hr>
+
+
+
+<!-- Create a dropdown asking user how many digits he wants to round pi -->
+<h4>How many digits do you want to round pi to?</h4>
+<select ng-model = "pi">
+    <option value="">---Please select---</option>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+    <option>7</option>
+</select>
+
+<h3>{{ 3.1415926535897 | number:pi }}</h3>
+
+
+<ng-pluralize count="pi"
+     when="{'1': 'You chose to round to 1 digit of pi.',
+         'other': 'You chose {} digits of pi.'}">
+</ng-pluralize>
+
+<hr>
+
+<p>The percentage is {{(100*count/total)| number:0}}%</p>
+
+<hr>
+
+
+
+<!-- Tip calculator -->
+<h4>Tip Calculator</h4>
+<h4>Your meal cost was: <input type="number" ng-model="mealCost" ng-init placeholder="Your meal cost?"></h4>
+
+
+<h4>What percentage tip do you want to leave? <select ng-model = "tip"></h4>
+  <option value="">---Please select---</option>
+  <option value=".1">10%</option>
+  <option value=".15">15%</option>
+  <option value=".2">20%</option>
+</select>
+
+<h4>Your meal cost {{ mealCost | currency }} and you want to leave a {{ tip }} tip.
+You should leave {{  (mealCost * tip | currency) * 100 }}</h4>
+
+<hr>
+
+
+<!-- Another math example -->
+<h3>More math</h3>
+    <p>First Number:
+        <input type="number" ng-model="num1" ng-init="num1=0" />
+    </p>
+    <p>Second Number:
+        <input type="number" ng-model="num2" ng-init="num2=0" />
+    </p>
+    <p>Sum: {{ num1 * num2 }}</p>
+
+<hr>
+
+
+
+<!-- Mad Libs -->
+<h3>Let's Play Mad Libs</h3>
+<h4>Fill out the form below and let the fun begin!</h4>
+    Boy's Name <input type="text" ng-model="boysName" placeholder="Enter a boy's name">
+<br>
+    Adjective <input type="text" ng-model="adjective" placeholder="Enter an adjective">
+<br>
+    Plural Noun: <input type="text" ng-model="pluralNoun1" placeholder="Enter a plural noun">
+<br>
+    Plural Insect <input type="text" ng-model="insect" placeholder="Enter an insect, plural">
+<br>
+    Plural Noun <input type="text" ng-model="pluralNoun2" placeholder="We need another plural noun">
+<br>
+    Verb, ending in 's' <input type="text" ng-model="verb" placeholder="Verb, ending in 's'">
+
+<h4>I'm in love with {{ boysName | uppercase }}. <br>
+        He's so {{ adjective | uppercase }}! He has big flat {{ pluralNoun1 | uppercase }}, and when our {{ insect | uppercase }} meet, I get {{ pluralNoun2 | uppercase }} in my stomach. I've fallen for him like a ton of {{ verb | uppercase }}, and he shuffles for me too.
+</h4>
+<button ng-click="toggle()">Play Again?</button>
+
+<hr>
 
 
 
@@ -48,7 +166,7 @@
     angular.module("myapp", [])
     .controller("HelloController", function($scope) {
         $scope.hello = {};
-        $scope.hello.title = "World";
+        $scope.hello.title = "Re-doing the Angular 1 expercise from September 20";
     });
 </script>
 </body>
